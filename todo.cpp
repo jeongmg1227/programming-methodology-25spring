@@ -49,13 +49,14 @@ void TodoList::add_task(const char* task) {
 
 void TodoList::remove_task(int index) {
     // TODO: check bounds, delete task, shift left
+    if(index<0 || index>MAX_TASKS){throw std::invalid_argument("Invalid index");}
     char* temp;
     int final=0;
     for(int i=0;i<MAX_TASKS;i++)
     {
-        if(tasks[final]==nullptr){final=i-1;break;}
+        if(tasks[i]==nullptr){final=i-1;break;}
     }
-    //if(final==-1){~~}
+    if(final==-1){return;}
     for(int i=index;i<final;i++)
     {
         tasks[i]=tasks[i+1];
